@@ -62,10 +62,12 @@ spec:
         configMap:
           name: {{ .Chart.Name }}-config
       tolerations:
-      - key: "app"
-        operator: "Equal"
-        value: "mysql"
-        effect: "NoSchedule"
+      {{- range .Values.mysql.tolerations }}
+      - key: {{ .key | quote }}
+        operator: {{ .operator | quote }}
+        value: {{ .value | quote }}
+        effect: {{ .effect | quote }}
+      {{- end }}
       affinity:
         podAntiAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
