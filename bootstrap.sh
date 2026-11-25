@@ -10,5 +10,5 @@ kubectl taint nodes -l app=mysql app=mysql:NoSchedule
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/main/deploy/static/provider/kind/deploy.yaml
 
 # Start project
-helm install todoapp-release ./helm-chart/todoapp/
+helm install todoapp-release .infrastructure/helm-chart/todoapp/
 
