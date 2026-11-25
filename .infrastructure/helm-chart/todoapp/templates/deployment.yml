@@ -52,15 +52,21 @@ spec:
         {{- end }}
         ports:
         - containerPort: 8080
+        startupProbe:
+          httpGet:
+            path: /api/health
+            port: 8080
+          periodSeconds: 5
+          failureThreshold: 30
         livenessProbe:
           httpGet:
-            path: api/health
+            path: /api/health
             port: 8080
           initialDelaySeconds: 60
           periodSeconds: 5
         readinessProbe:
           httpGet:
-            path: api/ready
+            path: /api/ready
             port: 8080
           initialDelaySeconds: 5
           periodSeconds: 5
